@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function fetchNombre() {
+        
+
+        let body = {
+            firstName: document.getElementById("newName").value,
+            lastName: document.getElementById("newLastName").value,
+            mail: document.getElementById("email").innerHTML
+        }
+        fetch("/usuario", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
+    }
+</script>
+
+<body>
+    <h1>Datos del usuario</h1>
+    <b>Email del usuario </b>: <p id="email">{{this.mail}}</p>
+    <b>Nombre del usuario</b>: <p>{{this.lastName}}</p>
+    <b>Apellido del usuario</b>:<p> {{this.firstName}}</p>
+
+
+    <input type="text" id="newName" />
+    <input type="text" id="newLastName" />
+    <button onclick="fetchNombre()">Cambiar nombre</button>
+</body>
+
+</html>
